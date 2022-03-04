@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 class MainActivity : ComponentActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
     private val TAG = "MainActivity"
-    var tempSensor: Sensor? = null
+    var accelerometerSensor: Sensor? = null
     private var xSide: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,13 +60,13 @@ class MainActivity : ComponentActivity(), SensorEventListener {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         val deviceSensors: List<Sensor> = sensorManager.getSensorList(Sensor.TYPE_ALL)
         Log.d(TAG, deviceSensors.toString())
-        tempSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
         //register for accelerometer sensor event
-        if (tempSensor != null) {
+        if (accelerometerSensor != null) {
             sensorManager.registerListener(
                 this,
-                tempSensor,
+                accelerometerSensor,
                 SensorManager.SENSOR_DELAY_FASTEST,
                 SensorManager.SENSOR_DELAY_FASTEST,
 
